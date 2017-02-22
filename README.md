@@ -7,6 +7,6 @@ Create key ~/.ssh/other_keys/vms_key
     vagrant up
     vagrant ssh
     cd contrail-vnc
-    scons -j 8
+    scons
 
 You can clean SConscript from Openstack stuff for faster build.
