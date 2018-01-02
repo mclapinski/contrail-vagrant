@@ -87,7 +87,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     ssh-keyscan github.com >> ~/.ssh/known_hosts
     mkdir -p ~/contrail-vrouter
-    cd ~/contrail-vrouter && repo init -u git@github.com:Juniper/contrail-vnc && repo sync
+    cd ~/contrail-vrouter && repo init -u git@github.com:Juniper/contrail-vnc && repo sync --no-clone-bundle
     cd ~/contrail-vrouter/third_party && python fetch_packages.py
     mkdir -p ~/contrail-vrouter/third_party/cassandra
     cd ~/contrail-vrouter/third_party/cassandra && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/cassandra/v2.2.0/cassandra-cpp-driver_2.2.0-1_amd64.deb && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/cassandra/v2.2.0/cassandra-cpp-driver-dev_2.2.0-1_amd64.deb && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/dependencies/libuv/v1.7.5/libuv_1.7.5-1_amd64.deb && sudo dpkg -i libuv_1.7.5-1_amd64.deb cassandra-cpp-driver_2.2.0-1_amd64.deb cassandra-cpp-driver-dev_2.2.0-1_amd64.deb
