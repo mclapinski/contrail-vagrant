@@ -71,11 +71,13 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt-add-repository ppa:opencontrail/ppa
+    echo "deb [trusted=yes] http://107.170.203.108/ubuntu trusty-master main" > /etc/apt/sources.list.d/opencontrail-private.list
     apt-get update
     apt-get install -y git cmake
     apt-get install -y autoconf automake bison debhelper flex libcurl4-openssl-dev libexpat-dev libgettextpo0 libprotobuf-dev libtool libxml2-utils make protobuf-compiler python-all python-dev python-lxml python-setuptools python-sphinx ruby-ronn scons unzip vim-common libsnmp-python libipfix-dev librdkafka-dev librdkafka1
     apt-get install -y libboost-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-program-options-dev libboost-python-dev libboost-regex-dev libboost-system-dev libboost-thread-dev libcurl4-openssl-dev google-mock libgoogle-perftools-dev liblog4cplus-dev libtbb-dev libhttp-parser-dev libxml2-dev libicu-dev python-pip
     apt-get install -y libpcap-dev libnl-genl-3-dev libnl-3-dev libzookeeper-mt-dev libzookeeper-mt2
+    apt-get install -y libuv cassandra-cpp-driver cassandra-cpp-driver-dev
     apt-get install -y git-review
   SHELL
 
@@ -90,8 +92,6 @@ Vagrant.configure("2") do |config|
     mkdir -p ~/contrail-vrouter
     cd ~/contrail-vrouter && repo init -u git@github.com:Juniper/contrail-vnc && repo sync --no-clone-bundle
     cd ~/contrail-vrouter/third_party && python fetch_packages.py
-    mkdir -p ~/contrail-vrouter/third_party/cassandra
-    cd ~/contrail-vrouter/third_party/cassandra && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/cassandra/v2.2.0/cassandra-cpp-driver_2.2.0-1_amd64.deb && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/cassandra/v2.2.0/cassandra-cpp-driver-dev_2.2.0-1_amd64.deb && wget https://downloads.datastax.com/cpp-driver/ubuntu/14.04/dependencies/libuv/v1.7.5/libuv_1.7.5-1_amd64.deb && sudo dpkg -i libuv_1.7.5-1_amd64.deb cassandra-cpp-driver_2.2.0-1_amd64.deb cassandra-cpp-driver-dev_2.2.0-1_amd64.deb
   SHELL
 end
 
