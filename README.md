@@ -2,11 +2,9 @@
 
 Vagrant for building contrail.
 
-Create key ~/.ssh/other_keys/vms_key
+Start ssh-agent and ssh-add your key.
 
     vagrant up
     vagrant ssh
-    cd contrail-vnc
-    scons
-
-You can clean SConscript from Openstack stuff for faster build.
+    cd contrail-vrouter
+    scons -j 2
