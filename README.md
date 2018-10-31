@@ -1,6 +1,6 @@
-# vrouter-vagrant
+# contrail-vagrant
 
-Vagrant for building contrail.
+Vagrantfile for building contrail.
 
 Start ssh-agent and ssh-add your key.
 
